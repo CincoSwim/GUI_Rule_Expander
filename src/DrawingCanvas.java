@@ -47,7 +47,7 @@ public class DrawingCanvas extends Canvas {
         currentAngle = 0.0;
 
         for (position = 0; position < drawString.length(); position++) {
-            if (drawString.charAt(position) == 'F' || drawString.charAt(position) == 'G') { // Draw 5 units along current direction
+            if (drawString.charAt(position) == 'F' ) { // Draw 5 units along current direction
                 Line2D line = new Line2D.Double(currentPositionX, currentPositionY,
                         currentPositionX + 5.0 * Math.sin(currentAngle),
                         currentPositionY + 5.0 * Math.cos(currentAngle));

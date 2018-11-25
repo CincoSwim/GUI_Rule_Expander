@@ -2,8 +2,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
+
 
 /**
  *
@@ -19,7 +18,7 @@ import javax.swing.border.EtchedBorder;
 public class Project2GUI extends JFrame implements ActionListener {
 
     protected JTextField lhs[], rhs[], angle, startSymbol;
-    protected JButton drawButton;
+    protected JButton drawButton, clearbutton, preload;
     protected JSpinner iterationSpinner;
     protected JLabel ruleLabels[], angleLabel, startLabel, spinnerLabel;
     protected String rhsValue[], lhsValue[];
@@ -62,10 +61,21 @@ public class Project2GUI extends JFrame implements ActionListener {
         buildAngle(ourGUI, gbc);
         buildStartSymbol(ourGUI, gbc);
         drawButton = new JButton ("Draw");
+        clearbutton = new JButton("Clear Fields");
+        preload = new JButton("Preload Fractal Plant");
         drawButton.addActionListener(this);
+        clearbutton.addActionListener(this);
+        preload.addActionListener(this);
         gbc.gridx = 0;		gbc.gridy = 9;
+
         gbc.gridwidth = 10; gbc.anchor = GridBagConstraints.CENTER;
         ourGUI.add(drawButton, gbc);
+
+        gbc.anchor = GridBagConstraints.EAST;
+        ourGUI.add(clearbutton, gbc);
+
+        gbc.anchor = GridBagConstraints.WEST;
+        ourGUI.add(preload, gbc);
 
 
         buildSpinner(ourGUI, gbc);
@@ -87,7 +97,6 @@ public class Project2GUI extends JFrame implements ActionListener {
         myCanvas = new DrawingCanvas();
         myCanvas.setAngleIncrement(90.0);
         myCanvas.setDrawString("F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F");
-//		myCanvas.setDrawString("F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F+F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F+F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F");
         gbc.gridx = 0; gbc.gridy = 10;
         gbc.gridwidth = 10; gbc.gridheight = 10;
         ourGUI.add(myCanvas, gbc);
@@ -248,7 +257,6 @@ public class Project2GUI extends JFrame implements ActionListener {
             for (int i = 0; i<= ourStartSymbol.length()-1; i++)
                 list.enqueue(ourStartSymbol.charAt(i));
 
-            //list.enqueue(ourStartSymbol.charAt(0));
 
             for (int i = 0; i <= iterations; i++ ){
                 LSystemExpander.ExpandOnce(list);
@@ -261,6 +269,24 @@ public class Project2GUI extends JFrame implements ActionListener {
             myCanvas.setDrawString(IteratedString);
             System.out.println("Number of iterations = " + iterationSpinner.getValue());
             myCanvas.repaint();
+        }
+        if (event.getSource() == clearbutton){
+            System.out.println("clear button pressed!");
+            for (int i =0; i<= 4; i++){
+                rhs[i].setText("");
+                lhs[i].setText("");
+            }
+            angle.setText("");
+            startSymbol.setText("");
+        }
+        if (event.getSource() == preload){
+            System.out.println("Preloading Fractal Plant L-System");
+            lhs[0].setText("X");
+            lhs[1].setText("F");
+            startSymbol.setText("X");
+            angle.setText("25");
+            rhs[0].setText("F+[[X]-X]-F[-FX]+X");
+            rhs[1].setText("FF");
         }
     }
 
