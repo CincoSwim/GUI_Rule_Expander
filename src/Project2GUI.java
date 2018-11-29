@@ -60,8 +60,6 @@ public class Project2GUI extends JFrame implements ActionListener {
          * changed this to use a gridBagLayout to allow us a better
          * way to arrange the GUI.
          *
-         * The routine is too long.  It should be shortened
-         * and simplified.  We will do this to it in class.
          */
 
 
