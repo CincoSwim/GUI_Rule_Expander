@@ -13,7 +13,11 @@ import javax.swing.*;
  * The GUI for Project 2 as we developed it in
  * class.  You may alter this code for use with Project 2.
  *
- *
+ * Alterations by Christopher Pucko
+ * New Features
+ *  - Button for clearing all input fields for easy re-entry
+ *  - Button for preloading a curated L-System ruleset
+ *  - Increased Canvas size to (800,600)
  */
 public class Project2GUI extends JFrame implements ActionListener {
 
@@ -25,6 +29,9 @@ public class Project2GUI extends JFrame implements ActionListener {
     protected DrawingCanvas myCanvas;
     String IteratedString;
 
+    /**
+     * Constructs a GUI object.
+     */
     public Project2GUI () {
         rhsValue = new String[5];
         lhsValue = new String[5];

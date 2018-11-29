@@ -1,5 +1,5 @@
 /**
- * This class implements CoupleStackInterface as a stack that contains couples.
+ * This class implements PairStackInterface as a stack that contains GraphPairs.
  *
  * @author Christopher Pucko <cgpucko@gmail.com>
  */
@@ -24,16 +24,16 @@ public class PairStack implements PairStackInterface {
     /**
      * This returns the object on the top of the stack without removing it.
      *
-     * @return Couples -Returns "Couples" pairing.
+     * @return GraphPairs -Returns a object with a cartesian pair and a direction.
      */
     public GraphPair top() {
         return stack[top];
     }
 
     /**
-     * This pushes a Couples object, described "pair," to the stack.
+     * This pushes a GraphPair object to the stack.
      *
-     * @param pair A Couples object containing 2 index integers.
+     * @param pair A GraphPair object containing 2 position integers and a direction double.
      */
     public void push(GraphPair pair) {
         top++;

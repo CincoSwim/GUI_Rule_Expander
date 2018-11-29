@@ -2,9 +2,6 @@ import java.awt.Canvas;
 import java.awt.*;
 import java.awt.geom.*;
 
-/**
- *
- */
 
 /**
  * @author Gerald Heuring
@@ -15,7 +12,7 @@ public class DrawingCanvas extends Canvas {
 
 
     DrawingCanvas() {
-        this.setPreferredSize(new Dimension(400, 400));
+        this.setPreferredSize(new Dimension(800, 600));
     }
 
     public void setDrawString(String s) {
@@ -28,12 +25,17 @@ public class DrawingCanvas extends Canvas {
 
     /**
      * Paint routine for our canvas.  The upper Left hand corner
-     * is 0, 0 and the lower right hand corner is 399, 399.
+     * is 0, 0 and the lower right hand corner is 799, 599.
      * <p>
-     * Our initial Position can be either 200, 0 (probably easier)
-     * or 200, 399 (need to draw in the "negative" direction).
+     * The initial position is set in the center of the canvas, at (400, 300)
      * <p>
-     * We will also talk about how to scale this and modify it.
+     * When this method encounters an open bracket ([) it will save its current settings to a
+     * stack of size 100. If the stack is full, it will disregard any more saved inputs until an input
+     * is recalled.
+     * <p>
+     * If a closed bracket (]) is encountered, the saved position will be recalled. If the stack is empty, this
+     * command will be disregarded.
+     * </p>
      */
     public void paint(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
@@ -42,8 +44,8 @@ public class DrawingCanvas extends Canvas {
 
         PairStack stack = new PairStack(100);
 
-        currentPositionX = 200;
-        currentPositionY = 200;
+        currentPositionX = 400;
+        currentPositionY = 300;
         currentAngle = 0.0;
 
         for (position = 0; position < drawString.length(); position++) {

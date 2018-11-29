@@ -1,9 +1,10 @@
-public interface QueueInterface {
-    /**
- * This is a stack interface for a Queue to hold characters making the rule.
+/**
+ * This is an interface for a Queue that holds single characters.
  *
- * @author Christopher Pucko <cgpucko@gmail.com>
+ * @author Christopher Pucko
  */
+public interface QueueInterface {
+
 
     char dequeue();
 

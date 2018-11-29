@@ -1,36 +1,34 @@
+/**
+ * This class expands a string using a set of rules to create an expanded L-System string, using Queue.java
+ * <p>
+ * Each rule is stored as a single character, and is paired with a parameter, stored as a string.
+ * </P><p>
+ * When a character matching a rule is retrieved from the queue, the corresponding parameter is passed
+ * in character by character. Otherwise, the character is re-queued in the queue as is.
+ * </p><p>
+ * At the start of expansion, a '#' character is enqueued at the end of the list. This allows the queue to mark where it
+ * should start and stop iterating.
+ * </p>
+ *
+ *
+ * @author Christopher Pucko
+ */
 public class LSystemExpander {
 
-    //Expected to come from the GUI. Hardcoded for testing and development purposes
+
     static String param1, param2, param3, param4, param5;
     static Character rule1, rule2, rule3, rule4, rule5, start;
     int iterations;
 
-    public static void main(String[] args) {
-        Queue list = new Queue();
-        rule1 ='f' ;
-        param1 = "F+F-[F+F]";
-        rule2 = ' ';
-        rule3 = ' ';
-        rule4 = ' ';
-        rule5 = ' ';
-        param2 = "";
-        param3 = "";
-        param4 = "";
-        param5 = "";
 
-
-
-
-
-        list.enqueue(rule1);
-
-        ExpandOnce(list);
-        System.out.println(getQueueAsString(list));
-
-    }
-
+    /**
+     * This method takes in a list, and expands it for one iteration. Note- for this project, the parameters and rules
+     * are set by the GUI before running this expansion according to the text field's contents.
+     * @param list - the string to be expanded. Each object in the list is a character for the string.
+     * @return This returns the list queue, expanded upon once
+     */
     public static Queue ExpandOnce(Queue list) {
-        char readChar;
+
         list.enqueue('#');
         list.printAll();
         while (list.peek() != '#') {
@@ -73,6 +71,12 @@ public class LSystemExpander {
 
         return list;
     }
+
+    /**
+     * This takes in a list queue fo characters, and returns it as a single string.
+     * @param list - queue containing a list of characters.
+     * @return This returns the characters of the queue in order enqueued as a string.
+     */
     public static String getQueueAsString(Queue list){
         String testString = "";
         list.enqueue('#');
